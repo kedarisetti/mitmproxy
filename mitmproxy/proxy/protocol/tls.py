@@ -222,16 +222,25 @@ def is_tls_record_magic(d):
         True, if the passed bytes start with the TLS record magic bytes.
         False, otherwise.
     """
-    d = d[:3]
 
-    # TLS ClientHello magic, works for SSLv3, TLSv1.0, TLSv1.1, TLSv1.2
-    # http://www.moserware.com/2009/06/first-few-milliseconds-of-https.html#client-hello
-    return (
-        len(d) == 3 and
-        d[0] == 0x16 and
-        d[1] == 0x03 and
-        0x0 <= d[2] <= 0x03
-    )
+    """
+    -EDITED by Dharanish Kedarisetti
+    Muting function to make pass through tls/ssl
+    """
+
+    # d = d[:3]
+    #
+    # # TLS ClientHello magic, works for SSLv3, TLSv1.0, TLSv1.1, TLSv1.2
+    # # http://www.moserware.com/2009/06/first-few-milliseconds-of-https.html#client-hello
+    # return (
+    #     len(d) == 3 and
+    #     d[0] == 0x16 and
+    #     d[1] == 0x03 and
+    #     0x0 <= d[2] <= 0x03
+    # )
+
+    return False
+
 
 
 def get_client_hello(client_conn):
